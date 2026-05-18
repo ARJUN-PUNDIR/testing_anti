@@ -49,7 +49,9 @@ const PORT = process.env.PORT || 5000;
 
 // Connect to DB and start server
 mongoose
-  .connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/employee-analytics')
+  .connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/employee-analytics', {
+    serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of 30s
+  })
   .then(() => {
     console.log('MongoDB Connected successfully!');
     app.listen(PORT, () => {
