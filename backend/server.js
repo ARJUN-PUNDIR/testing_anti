@@ -48,15 +48,22 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 5000;
 
 // Connect to DB and start server
-mongoose
   .connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/employee-analytics')
   .then(() => {
-    console.log('MongoDB Connected');
+    console.log('MongoDB Connected successfully!');
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
-    console.error(`Error connecting to MongoDB: ${err.message}`);
-    process.exit(1);
+    console.error('CRITICAL ERROR: Failed to connect to MongoDB');
+    console.error(err);
+    // Removed process.exit(1) to allow logs to flush
   });
+
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Rejection:', err);
+});
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
