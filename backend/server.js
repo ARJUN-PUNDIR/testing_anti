@@ -47,6 +47,14 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5000;
 
+console.log('--- STARTING SERVER ---');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('PORT:', PORT);
+console.log('MONGO_URI exists:', !!process.env.MONGO_URI);
+if (!process.env.MONGO_URI) {
+  console.log('WARNING: MONGO_URI is missing. Attempting to connect to localhost!');
+}
+
 // Connect to DB and start server
 mongoose
   .connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/employee-analytics', {
