@@ -1,0 +1,15 @@
+{
+  "name": "ai-employee-analytics",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "install-all": "npm run install-backend && npm run install-frontend",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "build": "npm run install-all && cd frontend && npm run build",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
