@@ -48,6 +48,7 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 5000;
 
 // Connect to DB and start server
+mongoose
   .connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/employee-analytics')
   .then(() => {
     console.log('MongoDB Connected successfully!');
